@@ -19,15 +19,16 @@ Template не визначає мову програмування, framework ч
 
 Пройди цей чекліст:
 
-1. Перейменуй/перепиши `README.md` під конкретний продукт.
-2. Визнач стек: мова, framework, package manager, база даних, test runner.
-3. Доповни `.gitignore` під стек.
-4. Заповни `.env.example` тільки назвами потрібних environment variables — без реальних секретів.
-5. Заповни `docs/architecture.md` важливими межами й потоками системи.
-6. Зафіксуй уже прийняті неочевидні рішення в `docs/decisions.md`.
-7. Додай реальні команди lint/typecheck/test/build у `.github/workflows/ci.yml`, не змінюючи cost-control policy без окремої причини.
-8. Якщо додаєш нові workflow, свідомо додай їх до allowlist у `scripts/check_actions_policy.py`.
-9. Зроби початковий стабільний commit до великої агентної роботи.
+1. **Спочатку виконай `docs/GITHUB_REPOSITORY_SETUP_UA.md`.** GitHub Rulesets, merge settings та Actions permissions треба перевіряти для кожного нового repository окремо.
+2. Перейменуй/перепиши `README.md` під конкретний продукт.
+3. Визнач стек: мова, framework, package manager, база даних, test runner.
+4. Доповни `.gitignore` під стек.
+5. Заповни `.env.example` тільки назвами потрібних environment variables — без реальних секретів.
+6. Заповни `docs/architecture.md` важливими межами й потоками системи.
+7. Зафіксуй уже прийняті неочевидні рішення в `docs/decisions.md`.
+8. Додай реальні команди lint/typecheck/test/build у `.github/workflows/ci.yml`, не змінюючи cost-control policy без окремої причини.
+9. Якщо додаєш нові workflow, свідомо додай їх до allowlist у `scripts/check_actions_policy.py`.
+10. Зроби початковий стабільний commit до великої агентної роботи.
 
 ## 3. Доступ агентів
 
@@ -220,6 +221,7 @@ CI FAIL
 
 - базові принципи `AGENTS.md`;
 - `docs/GITHUB_ACTIONS_POLICY.md`;
+- `docs/GITHUB_REPOSITORY_SETUP_UA.md`;
 - multi-agent принципи в `docs/AGENT_WORKFLOW.md`;
 - `.editorconfig`;
 - `.gitattributes`.
@@ -265,7 +267,27 @@ CI FAIL
 - [ ] Немає реальних секретів або mutable runtime data в Git.
 - [ ] Є зрозумілий rollback для ризикових змін.
 
-## 16. Найкоротша пам'ятка
+## 16. GitHub settings, які не можна забути
+
+Після кожного **Use this template** відкрий `docs/GITHUB_REPOSITORY_SETUP_UA.md` до початку substantial agent work.
+
+Найкоротший список:
+
+```text
+Protect main
++ PR required
++ policy status check required
++ squash only
++ block force push/delete
++ linear history
++ auto-delete merged branches
++ Actions token read-only
++ external fork workflow approval for public repos
+```
+
+Не покладайся на те, що ці repository-level settings автоматично скопіювалися з template repository.
+
+## 17. Найкоротша пам'ятка
 
 ```text
 мінімальні дозволи
@@ -276,7 +298,8 @@ CI FAIL
 + control agent integrates
 + QA tests assembled result
 + CI only at meaningful checkpoints
++ protected main
 + secrets never in Git
 ```
 
-Якщо через кілька місяців забудеш, чому template влаштований саме так, починай із цього файла, потім читай `AGENTS.md`, `docs/AGENT_WORKFLOW.md` і `docs/GITHUB_ACTIONS_POLICY.md`.
+Якщо через кілька місяців забудеш, чому template влаштований саме так, починай із цього файла, потім читай `docs/GITHUB_REPOSITORY_SETUP_UA.md`, `AGENTS.md`, `docs/AGENT_WORKFLOW.md` і `docs/GITHUB_ACTIONS_POLICY.md`.

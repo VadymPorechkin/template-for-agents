@@ -35,6 +35,7 @@ README.md
 docs/
   AGENT_WORKFLOW.md
   GITHUB_ACTIONS_POLICY.md
+  GITHUB_REPOSITORY_SETUP_UA.md
   HANDOFF_TEMPLATE.md
   OPERATOR_GUIDE_UA.md
   architecture.md
@@ -48,18 +49,19 @@ output/
 
 ## Starting a new project
 
-1. Create a new repository from this starter or copy its files into a new repository.
-2. Replace the project-name and purpose text in this README.
-3. Add the chosen language/framework and project-specific tooling.
-4. Extend `.gitignore` and `.env.example` for the actual stack.
-5. Update `AGENTS.md` only with project rules that are not obvious from the repository itself.
-6. Fill `docs/architecture.md` with durable architectural boundaries and flows.
-7. Record non-obvious durable decisions in `docs/decisions.md`.
-8. Extend `.github/workflows/ci.yml` with the real project checks while preserving the Actions cost-control policy.
-9. Update the workflow allowlist in `scripts/check_actions_policy.py` only when adding an intentional workflow.
-10. Make an initial project-stack commit before assigning substantial work to an agent.
+1. Create a new repository from this starter using **Use this template** or copy its files into a new repository.
+2. **Before substantial agent work, complete `docs/GITHUB_REPOSITORY_SETUP_UA.md`.** Repository-level GitHub settings such as Rulesets and Actions permissions must be checked separately for every new repository.
+3. Replace the project-name and purpose text in this README.
+4. Add the chosen language/framework and project-specific tooling.
+5. Extend `.gitignore` and `.env.example` for the actual stack.
+6. Update `AGENTS.md` only with project rules that are not obvious from the repository itself.
+7. Fill `docs/architecture.md` with durable architectural boundaries and flows.
+8. Record non-obvious durable decisions in `docs/decisions.md`.
+9. Extend `.github/workflows/ci.yml` with the real project checks while preserving the Actions cost-control policy.
+10. Update the workflow allowlist in `scripts/check_actions_policy.py` only when adding an intentional workflow.
+11. Make an initial project-stack commit before assigning substantial work to an agent.
 
-For the operator-oriented setup checklist in Ukrainian, read `docs/OPERATOR_GUIDE_UA.md`.
+For the broader operator guide in Ukrainian, read `docs/OPERATOR_GUIDE_UA.md`.
 
 ## Recommended single-agent Git workflow
 
