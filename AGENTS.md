@@ -36,6 +36,21 @@ This file contains universal operating rules for AI agents working in this repos
 - Batch related remote writes instead of pushing after every small edit.
 - Never use `git reset --hard`, force-push, history rewriting, broad `git clean`, or equivalent destructive operations unless the user explicitly authorizes the exact operation.
 
+## Multi-agent collaboration
+
+For simultaneous multi-agent work, read `docs/AGENT_WORKFLOW.md` before starting.
+
+- One concurrent agent must have one bounded task, one task branch, and one isolated writable workspace.
+- Concurrent agents must not share the same writable working tree.
+- For local Git work, prefer one Git worktree per concurrent agent; an isolated cloud checkout/sandbox is an acceptable equivalent.
+- A control/integration role owns decomposition, shared contracts, ownership boundaries, integration, conflict resolution, and the final review checkpoint.
+- Define shared contracts and ownership before parallel implementation starts.
+- Worker agents must not silently modify another agent's owned scope; cross-scope changes go through the control/integration role.
+- For non-trivial parallel work, prefer an `integration/<feature>` branch. Worker branches integrate there before the final PR to `main`.
+- QA/review should validate the assembled integration state, not only isolated worker branches.
+- Each worker should leave a durable handoff using `docs/HANDOFF_TEMPLATE.md` or an equivalent project-specific record.
+- Heavy CI belongs at meaningful integrated review checkpoints, not on every worker iteration.
+
 ## GitHub Actions
 
 GitHub Actions minutes are a controlled project resource.
@@ -74,4 +89,5 @@ A task is complete when:
 3. No unrelated behavior is intentionally broken.
 4. Documentation is updated when necessary.
 5. The final reviewed head is unambiguous and validation is not stale.
-6. The agent gives a concise summary of changes, checks, limitations, and rollback considerations when relevant.
+6. For multi-agent work, the accepted worker results have been integrated and the assembled state has been validated.
+7. The agent gives a concise summary of changes, checks, limitations, and rollback considerations when relevant.
