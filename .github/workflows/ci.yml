@@ -1,0 +1,34 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+    types: [ready_for_review]
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  policy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout exact source
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+
+      - name: GitHub Actions cost-control policy
+        run: python3 scripts/check_actions_policy.py
+
+      # Add project-specific deterministic checks below.
+      # Keep expensive jobs behind the same final-review checkpoint unless
+      # docs/GITHUB_ACTIONS_POLICY.md is deliberately changed.

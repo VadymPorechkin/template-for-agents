@@ -1,0 +1,51 @@
+# Secrets and local environment
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa
+id_rsa.*
+id_ed25519
+id_ed25519.*
+
+# Dependencies and common build output
+node_modules/
+vendor/
+dist/
+build/
+coverage/
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.venv/
+venv/
+
+# Logs, process state, temporary files
+*.log
+*.pid
+*.tmp
+*.temp
+*.bak
+*.save
+
+# Archives / generated transport artifacts
+*.tgz
+*.zip
+*.tar
+*.tar.gz
+
+# IDE / OS noise
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Agent-generated output
+output/*
+!output/.gitkeep
